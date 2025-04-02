@@ -1,0 +1,11 @@
+{
+  "name": "salesforce-project",
+  "version": "1.0.0",
+  "scripts": {
+    "prettier": "prettier --check \"**/*.{js,ts,html,css,json,yaml}\"",
+    "scan": "sfdx scanner:run --target force-app --format table"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.0"
+  }
+}
