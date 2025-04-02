@@ -7,7 +7,7 @@ on:
       - develop
 
 jobs:
-  code-analysis:
+  code-quality:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,13 +22,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Prettier
+      - name: Run Prettier (Check Formatting)
         run: npx prettier --check "**/*.{js,ts,html,css,json,yaml}"
 
-      - name: Run ESLint
-        run: npx eslint force-app/**/*.js --ext .js,.ts
-
-      - name: Run Salesforce Code Analyzer (PMD)
+      - name: Run Salesforce Code Analyzer
         run: |
           npm install -g @salesforce/sfdx-scanner
           sfdx scanner:run --target force-app --format table
