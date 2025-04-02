@@ -1,0 +1,34 @@
+name: Code Quality Check
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  code-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Prettier
+        run: npx prettier --check "**/*.{js,ts,html,css,json,yaml}"
+
+      - name: Run ESLint
+        run: npx eslint force-app/**/*.js --ext .js,.ts
+
+      - name: Run Salesforce Code Analyzer (PMD)
+        run: |
+          npm install -g @salesforce/sfdx-scanner
+          sfdx scanner:run --target force-app --format table
