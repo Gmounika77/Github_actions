@@ -23,11 +23,15 @@ jobs:
         run: npm install
 
       - name: Run Prettier (Check Formatting)
-        run: npx prettier --check "**/*.{js,ts,html,css,json,yaml}"
+        run: npx prettier --check "**/*.{js,ts,html,css,json,cls,yaml}"
+
+      - name: Install Salesforce CLI
+        run: |
+          npm install --global sfdx-cli
+          echo "$HOME/.npm-global/bin" >> $GITHUB_PATH
+
+      - name: Install Salesforce Code Analyzer
+        run: npm install -g @salesforce/sfdx-scanner
 
       - name: Run Salesforce Code Analyzer
-        run: |
-          npm install -g @salesforce/sfdx-scanner
-          sfdx scanner:run --target force-app --format table
-          
-      
+        run: sfdx scanner:run --target force-app --format table
