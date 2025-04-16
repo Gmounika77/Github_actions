@@ -35,3 +35,6 @@ jobs:
 
       - name: Run Salesforce Code Analyzer
         run: sfdx scanner:run --target force-app --format table
+
+      - name: Run Jest Tests
+        run: npm test
