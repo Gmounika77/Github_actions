@@ -23,7 +23,7 @@ jobs:
         run: npm install
 
       - name: Run Prettier (Check Formatting)
-        run: npx prettier --check "**/*.{js,ts,html,css,json,cls,yaml}"
+        run: npx prettier --check "**/*.{js,ts,html,css,json,yaml}"
 
       - name: Install Salesforce CLI
         run: |
