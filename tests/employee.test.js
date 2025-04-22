@@ -21,13 +21,13 @@ describe("Employee Utilities", () => {
 
   test("throws error for invalid employee in bonus calc", () => {
     expect(() => calculateBonus({ name: "Bob" }, 10)).toThrow(
-      "Invalid employee"
+      "Invalid employee",
     );
   });
 
   test("formats employee info", () => {
     expect(formatEmployeeInfo(validEmployee)).toBe(
-      "Alice earns $60000.00 per year."
+      "Alice earns $60000.00 per year.",
     );
   });
 });
