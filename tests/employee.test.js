@@ -1,3 +1,4 @@
+
 const {
   isValidEmployee,
   calculateBonus,
@@ -27,4 +28,5 @@ describe('Employee Utilities', () => {
     expect(formatEmployeeInfo(validEmployee)).toBe('Alice earns $60000.00 per year.');
   });
 });
+
 
