@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   # Build job (Node.js)
   build:
-    machine: true  # Use CircleCI's default machine environment (not Docker)
+    machine: true  # Use CircleCI's default machine environment 
     steps:
       - checkout  # Checkout the code from your repository
       - run:
