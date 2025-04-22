@@ -1,0 +1,67 @@
+version: 2.1
+
+jobs:
+  # Build job (Node.js)
+  build:
+    machine: true  # Use CircleCI's default machine environment (not Docker)
+    steps:
+      - checkout  # Checkout the code from your repository
+      - run:
+          name: Install Node.js and dependencies
+          command: |
+            curl -sL https://deb.nodesource.com/setup_14.x | bash -  # Install Node.js 14
+            apt-get install -y nodejs  # Install Node.js
+            npm install  # Install the dependencies defined in package.json
+      - run:
+          name: Run Build Script
+          command: |
+            npm run build  # If you have a build script in your package.json, run it
+
+  # Test job (Node.js tests with Jest or Mocha)
+  test:
+    machine: true  # Use CircleCI's default machine environment (not Docker)
+    steps:
+      - checkout  # Checkout the code from your repository
+      - run:
+          name: Install Node.js and dependencies
+          command: |
+            curl -sL https://deb.nodesource.com/setup_14.x | bash -  # Install Node.js 14
+            apt-get install -y nodejs  # Install Node.js
+            npm install  # Install the dependencies
+      - run:
+          name: Run Tests
+          command: |
+            npm test  # Run your tests, e.g., using Jest or Mocha
+
+  # Apex Deployment job (Salesforce)
+  deploy_apex:
+    machine: true  # Use CircleCI's default machine environment (not Docker)
+    steps:
+      - checkout  # Checkout the code from your repository
+      - run:
+          name: Install Salesforce CLI
+          command: |
+            curl https://developer.salesforce.com/media/salesforce-cli/sfdx-linux-x64.tar.xz -o sfdx-linux-x64.tar.xz
+            tar -xvJf sfdx-linux-x64.tar.xz
+            ./sfdx/install
+      - run:
+          name: Authenticate Salesforce
+          command: |
+            ./sfdx/bin/sfdx force:auth:web:login -r https://login.salesforce.com  # Or use a dev org login URL
+      - run:
+          name: Deploy Apex Code to Salesforce
+          command: |
+            ./sfdx/bin/sfdx force:source:deploy -p force-app  # Path to your Salesforce source directory (modify if needed)
+
+# Define workflows that control the order of jobs
+workflows:
+  version: 2
+  build_and_test_and_deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build  # Ensure the test job runs after the build job completes
+      - deploy_apex:
+          requires:
+            - test  # Ensure the deploy_apex job runs after the test job completes
