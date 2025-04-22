@@ -2,7 +2,7 @@
 const {
   isValidEmployee,
   calculateBonus,
-  formatEmployeeInfo
+  formatEmployeeInfo,
 } = require('../src/employee');
 
 describe('Employee Utilities', () => {
