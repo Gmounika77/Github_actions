@@ -2,7 +2,7 @@
 function isValidEmployee(employee) {
   return (
     typeof employee.name === "string" &&
-    typeof employee.salary === "number" &&
+    typeof employee.salary === "number" 
     employee.salary > 0
   );
 }
