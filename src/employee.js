@@ -1,4 +1,3 @@
-
 function isValidEmployee(employee) {
   return (
     typeof employee.name === "string" &&
@@ -21,7 +20,5 @@ function formatEmployeeInfo(employee) {
 module.exports = {
   isValidEmployee,
   calculateBonus,
-  formatEmployeeInfo
+  formatEmployeeInfo,
 };
-
-
