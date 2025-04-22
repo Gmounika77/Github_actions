@@ -1,4 +1,3 @@
-// This is a test comment to trigger GitHub Actions 
 function isValidEmployee(employee) {
   return (
     typeof employee.name === "string" &&
