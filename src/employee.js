@@ -1,15 +1,15 @@
 
 function isValidEmployee(employee) {
   return (
-    typeof employee.name === 'string' &&
-    typeof employee.salary === 'number' &&
+    typeof employee.name === "string" &&
+    typeof employee.salary === "number" &&
     employee.salary > 0
   );
 }
 
 function calculateBonus(employee, percentage) {
   if (!isValidEmployee(employee)) {
-    throw new Error('Invalid employee');
+    throw new Error("Invalid employee");
   }
   return (employee.salary * percentage) / 100;
 }
