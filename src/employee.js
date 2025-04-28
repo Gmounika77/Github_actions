@@ -1,4 +1,4 @@
-//to trigger the flow
+//to trigger the circle flow
 function isValidEmployee(employee) {
   return (
     typeof employee.name === "string" &&
