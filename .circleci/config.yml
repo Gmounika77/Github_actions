@@ -9,8 +9,8 @@ jobs:
       - run:
           name: Install Node.js and dependencies
           command: |
-            curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -  # Update to Node.js 18
-            sudo apt-get install -y nodejs  # Install Node.js
+            curl -sL https://deb.nodesource.com/setup_18.x | bash -  # Update to Node.js 18 LTS
+            sudo apt-get install -y nodejs  # Use sudo to install Node.js
             npm install  # Install the dependencies defined in package.json
       - run:
           name: Run Build Script
